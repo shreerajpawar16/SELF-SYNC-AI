@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#6366f1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rounded square -->
+  <rect x="10" y="10" width="180" height="180" rx="40" fill="url(#logoGradient)" />
+  
+  <!-- Decorative circles -->
+  <circle cx="160" cy="35" r="25" fill="white" fill-opacity="0.08" />
+  <circle cx="45" cy="170" r="35" fill="white" fill-opacity="0.06" />
+  
+  <!-- Brain/Sync icon - left hemisphere -->
+  <path d="M72 95 C72 80, 80 65, 95 60 C105 57, 115 60, 118 68" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none" />
+  <path d="M72 105 C72 120, 80 135, 95 140 C105 143, 115 140, 118 132" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none" />
+  
+  <!-- Brain/Sync icon - right hemisphere -->
+  <path d="M128 95 C128 80, 120 65, 105 60 C95 57, 85 60, 82 68" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none" />
+  <path d="M128 105 C128 120, 120 135, 105 140 C95 143, 85 140, 82 132" stroke="white" stroke-width="4.5" stroke-linecap="round" fill="none" />
+  
+  <!-- Center connection (AI/neural node) -->
+  <circle cx="100" cy="100" r="10" fill="white" />
+  <circle cx="100" cy="100" r="5" fill="url(#accentGradient)" />
+  
+  <!-- Circuit lines extending from center -->
+  <path d="M100 90 L100 80" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M100 120 L100 110" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M90 100 L80 100" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M120 100 L110 100" stroke="white" stroke-width="2.5" stroke-linecap="round" />
+  
+  <!-- Sync arrows (circular) -->
+  <path d="M60 72 C70 58, 85 50, 100 50" stroke="white" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="8 4" />
+  <path d="M140 128 C130 142, 115 150, 100 150" stroke="white" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="8 4" />
+  
+  <!-- Arrow tips -->
+  <path d="M100 48 L95 56 L105 56 Z" fill="white" />
+  <path d="M100 152 L95 144 L105 144 Z" fill="white" />
+</svg>
+
