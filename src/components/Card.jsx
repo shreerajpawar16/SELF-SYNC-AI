@@ -1,7 +1,14 @@
 import { memo } from 'react';
 import { motion } from 'framer-motion';
 
-export const Card = memo(({ children, className = '', hover = false, padding = true, onClick, ...props }) => {
+export const Card = memo(({
+  children,
+  className = '',
+  hover = false,
+  padding = true,
+  onClick,
+  ...props
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -14,9 +21,16 @@ export const Card = memo(({ children, className = '', hover = false, padding = t
       {children}
     </motion.div>
   );
-};
+});
 
-export const StatCard = ({ icon: Icon, label, value, trend, color = 'primary', onClick }) => {
+export const StatCard = ({
+  icon: Icon,
+  label,
+  value,
+  trend,
+  color = 'primary',
+  onClick
+}) => {
   const colorClasses = {
     primary: 'bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400',
     green: 'bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400',
@@ -28,27 +42,29 @@ export const StatCard = ({ icon: Icon, label, value, trend, color = 'primary', o
   return (
     <Card
       hover
-      className={`${onClick ? 'cursor-pointer' : ''}`}
+      className={onClick ? 'cursor-pointer' : ''}
       onClick={onClick}
     >
-      <div className="flex items-start justify-between">
-        <div className={`p-2.5 rounded-xl ${colorClasses[color] || colorClasses.primary}`}>
-          {Icon && <Icon className="w-5 h-5" />}
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-gray-500">{label}</p>
+          <h3 className="text-2xl font-bold">{value}</h3>
+          {trend && (
+            <p className="text-sm text-green-500 mt-1">
+              {trend}
+            </p>
+          )}
         </div>
-      </div>
-      <div className="mt-3 space-y-1">
-        <p className="text-sm text-surface-500 dark:text-surface-400">{label}</p>
-        <p className="text-2xl font-bold font-display text-surface-900 dark:text-surface-50">
-          {value}
-        </p>
-        {trend && (
-          <p className="text-xs text-surface-400">{trend}</p>
+
+        {Icon && (
+          <div className={`p-2.5 rounded-xl ${colorClasses[color] || colorClasses.primary}`}>
+            <Icon className="w-6 h-6" />
+          </div>
         )}
       </div>
     </Card>
   );
 };
 
-StatCard.displayName = 'StatCard';
 Card.displayName = 'Card';
-
+StatCard.displayName = 'StatCard';
