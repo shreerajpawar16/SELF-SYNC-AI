@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 
-export const Input = ({
+export const Input = memo(({
   label,
   type = 'text',
   error,
@@ -40,6 +40,7 @@ export const Input = ({
             onClick={() => setShowPassword(!showPassword)}
             className="absolute right-3.5 top-1/2 -translate-y-1/2 text-surface-400 hover:text-surface-600 dark:hover:text-surface-300 transition-colors"
             tabIndex={-1}
+            aria-label={showPassword ? 'Hide password' : 'Show password'}
           >
             {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
           </button>
@@ -53,9 +54,11 @@ export const Input = ({
       )}
     </div>
   );
-};
+});
 
-export const Select = ({ label, error, children, className = '', ...props }) => {
+Input.displayName = 'Input';
+
+export const Select = memo(({ label, error, children, className = '', ...props }) => {
   return (
     <div className="space-y-1.5">
       {label && (
@@ -78,9 +81,11 @@ export const Select = ({ label, error, children, className = '', ...props }) => 
       )}
     </div>
   );
-};
+});
 
-export const TextArea = ({ label, error, className = '', ...props }) => {
+Select.displayName = 'Select';
+
+export const TextArea = memo(({ label, error, className = '', ...props }) => {
   return (
     <div className="space-y-1.5">
       {label && (
@@ -103,5 +108,6 @@ export const TextArea = ({ label, error, className = '', ...props }) => {
       )}
     </div>
   );
-};
+});
 
+TextArea.displayName = 'TextArea';

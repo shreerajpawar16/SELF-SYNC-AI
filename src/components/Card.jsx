@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 
-export const Card = ({ children, className = '', hover = false, padding = true, onClick, ...props }) => {
+export const Card = memo(({ children, className = '', hover = false, padding = true, onClick, ...props }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -47,4 +48,7 @@ export const StatCard = ({ icon: Icon, label, value, trend, color = 'primary', o
     </Card>
   );
 };
+
+StatCard.displayName = 'StatCard';
+Card.displayName = 'Card';
 

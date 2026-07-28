@@ -11,7 +11,7 @@ import { useTheme } from '../context/ThemeContext';
 
 export const Settings = () => {
   const { logout } = useAuth();
-  const { theme, toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -33,8 +33,7 @@ export const Settings = () => {
 
   const handleSavePassword = async () => {
     setSaving(true);
-    // When backend is connected, this will call the password update API
-    // For now, save is a no-op that awaits backend integration
+    // Backend will handle password update when connected via API
     setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
     setSaving(false);
   };
@@ -62,7 +61,7 @@ export const Settings = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="p-2.5 bg-primary-50 dark:bg-primary-900/30 rounded-xl">
-              {theme === 'dark' ? (
+              {isDark ? (
                 <Moon className="w-5 h-5 text-primary-600" />
               ) : (
                 <Sun className="w-5 h-5 text-primary-600" />
@@ -70,21 +69,22 @@ export const Settings = () => {
             </div>
             <div>
               <h3 className="font-semibold text-surface-900 dark:text-surface-50">Theme</h3>
-              <p className="text-sm text-surface-400">{theme === 'dark' ? 'Dark mode is active' : 'Light mode is active'}</p>
+              <p className="text-sm text-surface-400">{isDark ? 'Dark mode is active' : 'Light mode is active'}</p>
             </div>
           </div>
           <button
             onClick={toggleTheme}
             className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${
-              theme === 'dark' ? 'bg-primary-600' : 'bg-surface-300'
+              isDark ? 'bg-primary-600' : 'bg-surface-300'
             }`}
+            aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
           >
             <span
               className={`absolute top-0.5 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 flex items-center justify-center ${
-                theme === 'dark' ? 'translate-x-7.5' : 'translate-x-0.5'
+                isDark ? 'translate-x-7.5' : 'translate-x-0.5'
               }`}
             >
-              {theme === 'dark' ? (
+              {isDark ? (
                 <Moon className="w-3 h-3 text-primary-600" />
               ) : (
                 <Sun className="w-3 h-3 text-yellow-500" />
@@ -116,7 +116,7 @@ export const Settings = () => {
                 <p className="text-sm font-medium text-surface-700 dark:text-surface-300">{item.label}</p>
                 <p className="text-xs text-surface-400">{item.desc}</p>
               </div>
-              <label className="relative cursor-pointer">
+              <label className="relative cursor-pointer" aria-label={`Toggle ${item.label}`}>
                 <input
                   type="checkbox"
                   checked={notifications[item.key]}
@@ -203,12 +203,13 @@ export const Settings = () => {
 
       {showLogoutConfirm && (
         <ConfirmationDialog
+          isOpen={showLogoutConfirm}
+          onClose={() => setShowLogoutConfirm(false)}
+          onConfirm={handleLogout}
           title="Logout Confirmation"
           message="Are you sure you want to logout? You'll need to sign in again to access your account."
-          confirmLabel="Yes, Logout"
-          cancelLabel="Cancel"
-          onConfirm={handleLogout}
-          onCancel={() => setShowLogoutConfirm(false)}
+          confirmText="Yes, Logout"
+          cancelText="Cancel"
           variant="danger"
         />
       )}

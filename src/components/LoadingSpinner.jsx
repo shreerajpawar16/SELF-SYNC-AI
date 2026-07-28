@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 
-export const LoadingSpinner = ({ size = 'md', className = '' }) => {
+export const LoadingSpinner = memo(({ size = 'md', className = '' }) => {
   const sizeClasses = {
     sm: 'w-5 h-5',
     md: 'w-8 h-8',
@@ -17,5 +18,7 @@ export const LoadingSpinner = ({ size = 'md', className = '' }) => {
       />
     </div>
   );
-};
+});
+
+LoadingSpinner.displayName = 'LoadingSpinner';
 

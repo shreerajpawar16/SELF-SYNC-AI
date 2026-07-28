@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { authAPI } from '../services/api';
+import { authAPI, profileAPI } from '../services/api';
 import toast from 'react-hot-toast';
 
 const AuthContext = createContext(null);
@@ -70,12 +70,28 @@ export const AuthProvider = ({ children }) => {
     toast.success('Logged out successfully');
   }, []);
 
+  const updateProfile = useCallback(async (data) => {
+    try {
+      const response = await profileAPI.update(data);
+      const updatedUser = response.data;
+      setUser((prev) => ({ ...prev, ...updatedUser }));
+      localStorage.setItem('selfsync_user', JSON.stringify({ ...user, ...updatedUser }));
+      toast.success('Profile updated successfully!');
+      return updatedUser;
+    } catch (error) {
+      const message = error.response?.data?.error || error.message || 'Failed to update profile';
+      toast.error(message);
+      throw error;
+    }
+  }, [user]);
+
   const value = {
     user,
     loading,
     login,
     register,
     logout,
+    updateProfile,
     isAuthenticated: !!user,
   };
 

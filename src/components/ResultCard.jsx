@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { CheckCircle2, XCircle, Lightbulb, TrendingUp } from 'lucide-react';
+import { CheckCircle2, XCircle, Lightbulb, TrendingUp, ChevronDown } from 'lucide-react';
 
 export const ScoreCircle = ({ score, size = 'lg', label }) => {
   const sizeClasses = {
@@ -169,5 +169,5 @@ export const ExpandableQuestion = ({ question, userAnswer, expectedAnswer, missi
   );
 };
 
-import { ChevronDown } from 'lucide-react';
+
 

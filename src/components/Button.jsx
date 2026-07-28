@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { LoadingSpinner } from './LoadingSpinner';
 
-export const Button = ({
+export const Button = memo(({
   children,
   variant = 'primary',
   size = 'md',
@@ -44,5 +45,6 @@ export const Button = ({
       {children}
     </motion.button>
   );
-};
+});
 
+Button.displayName = 'Button';

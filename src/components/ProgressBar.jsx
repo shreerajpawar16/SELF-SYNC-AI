@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 
-export const ProgressBar = ({ progress = 0, total = 1, current = 0, className = '' }) => {
+export const ProgressBar = memo(({ progress = 0, total = 1, current = 0, className = '' }) => {
   const percentage = total > 0 ? Math.min(100, Math.round((current / total) * 100)) : 0;
 
   return (
@@ -23,5 +24,7 @@ export const ProgressBar = ({ progress = 0, total = 1, current = 0, className = 
       </div>
     </div>
   );
-};
+});
+
+ProgressBar.displayName = 'ProgressBar';
 

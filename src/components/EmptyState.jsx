@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion } from 'framer-motion';
 import { Inbox, FileText, BarChart3, Bell, BookOpen, Target } from 'lucide-react';
 import { Card } from './Card';
@@ -10,7 +11,7 @@ const icons = {
   default: FileText,
 };
 
-export const EmptyState = ({ type = 'default', title, description, action, actionText, onAction }) => {
+export const EmptyState = memo(({ type = 'default', title, description, action, actionText, onAction }) => {
   const Icon = icons[type] || icons.default;
 
   return (
@@ -41,5 +42,7 @@ export const EmptyState = ({ type = 'default', title, description, action, actio
       </Card>
     </motion.div>
   );
-};
+});
+
+EmptyState.displayName = 'EmptyState';
 

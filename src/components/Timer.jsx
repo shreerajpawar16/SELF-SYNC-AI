@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { memo, useState, useEffect, useRef } from 'react';
 import { Clock } from 'lucide-react';
 
-export const Timer = ({ duration = 0, onTimeUp, running = false, className = '' }) => {
+export const Timer = memo(({ duration = 0, onTimeUp, running = false, className = '' }) => {
   const [timeLeft, setTimeLeft] = useState(duration);
   const intervalRef = useRef(null);
 
@@ -48,5 +48,6 @@ export const Timer = ({ duration = 0, onTimeUp, running = false, className = '' 
       </span>
     </div>
   );
-};
+});
 
+Timer.displayName = 'Timer';
